@@ -7,28 +7,25 @@ for (let i = 0; i < SQARES_NUMBER; i++) {
    square.classList.add('square') //назначить квадратику класс
    board.append(square); //заапендить квадратик
 
-   square.addEventListener('mouseover', () => {
-      setColor(square);
-   })
+   square.addEventListener('mouseover', setColor)
 
-   square.addEventListener('mouseleave', () => {
-      removeColor(square);
-   })
+   square.addEventListener('mouseleave', removeColor)
 
 }
 
-function setColor(el) {
+function setColor(e) {
    const color = getRandomColor()
+   const el = e.target
    el.style.backgroundColor = color;
    el.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
 }
 
-function removeColor(el) {
+function removeColor(e) {
+   const el = e.target
    el.style.backgroundColor = '#1d1d1d';
    el.style.boxShadow = `0 0 2px #000`
 }
 
 function getRandomColor() {
-   const index = Math.floor(Math.random() * colors.length);
-   return colors[index];
+   return colors[Math.floor(Math.random() * colors.length)];
 }
